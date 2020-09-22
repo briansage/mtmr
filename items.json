@@ -1,0 +1,215 @@
+[
+  // Pomodoro timer
+  {
+    "align": "left",
+    "restTime": 600,
+    "type": "pomodoro",
+    "width": 78,
+    "workTime": 1800,
+  },
+
+  //Weather
+  {
+    "type": "weather",
+    "align": "left",
+    "units": "imperial",
+    "icon_type": "images",
+    "api_key": "ca93a0bb8cdb428552660d83249e4bc9",
+    "bordered": false,
+    "width": 78,
+  },
+
+  // Running Apps
+  {
+    "type": "dock",
+    "filter": "^((?!Harvest|Spotify|Finder))", // don't show these
+    "width": 216,
+    "align": "left",
+  },
+
+  { /* Spacer */ "align": "left", "bordered": false, "title": "", "type": "staticButton", "width": 6 },
+
+  // Spotify Controls
+	{
+    "action": "appleScript",
+    "actionAppleScript": {
+      "inline": "tell application \"Spotify\" to activate"
+    },
+    "bordered": false,
+    "image": { // Spotify Icon
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABABAMAAABYR2ztAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUdwTB3WXx3UXh3VXx7XYBkXFRpVLRyURmIaeAQAAAAEdFJOUwDDO3fSqUUkAAABbklEQVRIx61VbW6DMAztoAeYNA7ApB6gkzhAWS24wIAL0HABaK6/pHFNEhy8TXu/kPzkPD/8cTj8K7KPAqB+K5NhQPCUrABCXe7HOUYYZxgVRLiG8RfY4DUgFFtC7cffAfZTFBwBdhWEKfgEq4ocEjgj4ZQifO6/QG9kkETp1dDeVWfRKx3XYSW0LoqY5kCElXDrQkyeCCuh6WL0M4nIWQIyzqixdfKU1koFDKvyCA8NJMzU4xiD+b4kfHRpsIyKc6hBwjVptFHVY51EMAINNDFGJITKDNQcdpX74Hz0CQ3rY5qwMp4EIxrlafzrsYZ2Veb0DkRgfNCUok4Y1fqEijfyi2b8RE9beWqa48Y/uvCNMcH9btfUi+/CGLR1vhL6Zz9N/vBlaCU+7lwY/cmJ67Ryen/2tj23PLqJBodZH8vgj544vOL4pxfI5acrSFxi8hrkU9TSKr78ZpnL50A8KPJJEo+afBblwyqf5j/iGys5j6ScrST2AAAAAElFTkSuQmCC"
+    },
+    "name": "Spotify",
+	  "title": "",
+	  "type": "staticButton",
+    "width": 24,
+  },
+  {
+    "action": "appleScript",
+    "actionAppleScript": {
+      "inline": "if application \"Spotify\" is running then\rtell application \"Spotify\"\rif player state is playing then\rnext track\rend if\rend tell\rend if\r"
+    },
+    "refreshInterval": 2,
+    "source": {
+      "inline": "if application \"Spotify\" is running then\rtell application \"Spotify\"\rif player state is playing then\rreturn (get artist of current track) & \" – \" & (get name of current track)\relse\rreturn \"\"\rend if\rend tell\rend if\rreturn \"\"\r"
+    },
+    "type": "appleScriptTitledButton",
+    "width": 216,
+  },
+  {
+    "align": "right",
+    "type": "previous",
+    "width": 36,
+    "bordered": false
+  },
+  {
+    "align": "right",
+    "bordered": false,
+    "type": "play",
+    "width": 36,
+  },
+  {
+    "align": "right",
+    "bordered": false,
+    "type": "next",
+    "width": 36,
+  },
+
+  { /* Spacer */ "align": "right", "bordered": false, "title": "", "type": "staticButton", "width": 6 },
+
+  // Volume Controls
+  {
+    "align": "right",
+    "bordered": false,
+    "type": "mute",
+    "width": 36,
+  },
+  {
+    "align": "right",
+    "bordered": false,
+    "type": "volumeDown",
+    "width": 36,
+  },
+  {
+    "align": "right",
+    "bordered": false,
+    "type": "volumeUp",
+    "width": 36,
+  },
+
+  { /* Spacer */ "align": "right", "bordered": false, "title": "", "type": "staticButton", "width": 6 },
+
+  // More system stuff
+  {
+    "align": "right",
+    "title": "...",
+    "type": "group",
+    "items": [
+      // Screen Brightness
+      {
+        "bordered": false,
+        "type": "brightnessDown",
+        "width": 42,
+      },
+      {
+        "image": {
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURffLOPfLNyaSVzUAAAACdFJOU/kBxOqnWgAAAbJJREFUSMfVljtyhDAQBVulQCFH4CgcDR1NR9ERFBKoeA5GfGddtkNvwFINFKP5tED22+Zxwviv6QVKfIEc/iNoF5gkpLIeYI8SUp4PsAUJiekADQntF6isQjvxCTrhAJlFqMMBeIH9BMsD7DAb2BhvYbIyNAOCZIWqYKGTpDZJFQu9EKVd44RxQRq3IrULWD62C8wSssWUZEsR0k6wcDOrJZmoBpMKI+s5qkBQCQOUJADVOECdOsDS0gDbsgHMfT4rVwHSrZQFIN5ABka8BgDgAeZ+BztBgvUEnSgVlhNsTFJjvoF5HAZorBpdYKAiSRbqNyBIUr6AjZMdPwO72R40MElS+wZUWA+wQ6LAYkFvdIhkmA+wQSDDdIAGAZ6A34H0x0fca11gBZZsIHSIfnE/5+NjCn/OuiuUB+/aunZwDeNayjXdTpDN0wlY+r1PfWu75nfj8RogN2JuCN2Y5qgMwTI0wGPUnQw6Qarx0sVNKA5Mn6VUL22lIbZoYitDbPmlvocc9Umfl2D7adz1reC3pF8av4m+DCenp/ndZuG3E7fhuC3pH2+vnz8V3MfE+bnxBTXuuIMTrLWHAAAAAElFTkSuQmCC"
+        },
+        "type": "brightness",
+        "width": 144,
+      },
+      {
+        "bordered": false,
+        "type": "brightnessUp",
+        "width": 42,
+      },
+
+      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 18 },
+
+      // Keyboard Backlight
+      {
+        "bordered": false,
+        "type": "illuminationDown",
+        "width": 42,
+      },
+      {
+        "bordered": false,
+        "type": "illuminationUp",
+        "width": 42,
+      },
+
+      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 18 },
+
+      // Volume
+      {
+        "bordered": false,
+        "type": "mute",
+        "width": 42,
+      },
+      {
+        "bordered": false,
+        "type": "volumeDown",
+        "width": 42,
+      },
+      {
+        "type": "volume",
+        "width": 144
+      },
+      {
+        "bordered": false,
+        "type": "volumeUp",
+        "width": 42,
+      },
+
+      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 18 },
+
+      {
+        "type": "staticButton",
+        "title": ":::",
+        "action": "keyPress",
+        "keycode": 131,
+        "width": 60,
+      },
+
+      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
+
+      {
+        "type": "staticButton",
+        "title": "Exposé",
+        "action": "keyPress",
+        "keycode": 160,
+        "width": 60,
+      },
+
+      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
+
+      {
+        "type": "nightShift",
+        "width": 54,
+        "bordered": true,
+      },
+
+      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
+
+      {
+        "type": "dnd",
+        "width": 54,
+        "bordered": true,
+      },
+
+      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
+
+      // Sleep
+      {
+        "title": "Sleep",
+        "type": "sleep",
+        "width": 60,
+      },
+
+      {
+        "type": "close",
+        "align": "right"
+      }
+    ]
+  }
+]
