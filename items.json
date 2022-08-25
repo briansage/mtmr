@@ -1,29 +1,18 @@
 [
   // Pomodoro timer
-  {
-    "align": "left",
-    "restTime": 600,
-    "type": "pomodoro",
-    "width": 78,
-    "workTime": 1800,
-  },
-
-  //Weather
-  {
-    "type": "weather",
-    "align": "left",
-    "units": "imperial",
-    "icon_type": "images",
-    "api_key": "ca93a0bb8cdb428552660d83249e4bc9",
-    "bordered": false,
-    "width": 78,
-  },
+  // {
+  //   "align": "left",
+  //   "restTime": 600,
+  //   "type": "pomodoro",
+  //   "width": 78,
+  //   "workTime": 1800,
+  // },
 
   // Running Apps
   {
     "type": "dock",
-    "filter": "^((?!Harvest|Spotify|Finder))", // don't show these
-    "width": 216,
+    "filter": "^(?!Harvest|Spotify)", // don't show these
+    "width": 260,
     "align": "left",
   },
 
@@ -47,7 +36,7 @@
   {
     "action": "appleScript",
     "actionAppleScript": {
-      "inline": "if application \"Spotify\" is running then\rtell application \"Spotify\"\rif player state is playing then\rnext track\rend if\rend tell\rend if\r"
+      "inline": "tell application \"Spotify\" to activate"
     },
     "refreshInterval": 2,
     "source": {
@@ -59,20 +48,20 @@
   {
     "align": "right",
     "type": "previous",
-    "width": 36,
+    "width": 30,
     "bordered": false
   },
   {
     "align": "right",
     "bordered": false,
     "type": "play",
-    "width": 36,
+    "width": 30,
   },
   {
     "align": "right",
     "bordered": false,
     "type": "next",
-    "width": 36,
+    "width": 30,
   },
 
   { /* Spacer */ "align": "right", "bordered": false, "title": "", "type": "staticButton", "width": 6 },
@@ -82,22 +71,40 @@
     "align": "right",
     "bordered": false,
     "type": "mute",
-    "width": 36,
+    "width": 30,
   },
   {
     "align": "right",
     "bordered": false,
     "type": "volumeDown",
-    "width": 36,
+    "width": 30,
   },
   {
     "align": "right",
     "bordered": false,
     "type": "volumeUp",
-    "width": 36,
+    "width": 30,
   },
 
   { /* Spacer */ "align": "right", "bordered": false, "title": "", "type": "staticButton", "width": 6 },
+
+  // Brightness Controls
+  {
+    "align": "right",
+    "bordered": false,
+    "type": "brightnessDown",
+    "width": 30,
+  },
+  {
+    "align": "right",
+    "bordered": false,
+    "type": "brightnessUp",
+    "width": 30,
+  },
+
+  { /* Spacer */ "align": "right", "bordered": false, "title": "", "type": "staticButton", "width": 6 },
+
+  // { /* Spacer */ "align": "right", "bordered": false, "title": "", "type": "staticButton", "width": 6 },
 
   // More system stuff
   {
@@ -165,35 +172,41 @@
 
       {
         "type": "staticButton",
-        "title": ":::",
+        "title": "",
         "action": "keyPress",
         "keycode": 131,
-        "width": 60,
+        "width": 64,
+        "image": {
+          "filePath": "~/src/briansage/mtmr/assets/apps.png"
+        },
       },
 
       { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
 
       {
         "type": "staticButton",
-        "title": "Exposé",
+        "title": "",
         "action": "keyPress",
         "keycode": 160,
-        "width": 60,
+        "width": 64,
+        "image": {
+          "filePath": "~/src/briansage/mtmr/assets/espose.png"
+        },
       },
 
-      { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
+      // { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
 
-      {
-        "type": "nightShift",
-        "width": 54,
-        "bordered": true,
-      },
+      // {
+      //   "type": "nightShift",
+      //   "width": 54,
+      //   "bordered": true,
+      // },
 
       { /* Spacer */ "bordered": false, "title": "", "type": "staticButton", "width": 12 },
 
       {
         "type": "dnd",
-        "width": 54,
+        "width": 64,
         "bordered": true,
       },
 
@@ -201,9 +214,18 @@
 
       // Sleep
       {
-        "title": "Sleep",
-        "type": "sleep",
-        "width": 60,
+        "width": 64,
+        "bordered": true,
+        "title": "",
+        "type": "staticButton",
+        "action": "appleScript",
+        "actionAppleScript": {
+          // "inline": "tell application \"Finder\" to sleep",
+          "inline": "do shell script \"pmset displaysleepnow\"",
+        },
+        "image": {
+          "filePath": "~/src/briansage/mtmr/assets/sleep.png"
+        },
       },
 
       {
